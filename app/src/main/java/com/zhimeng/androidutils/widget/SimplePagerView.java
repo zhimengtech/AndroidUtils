@@ -1,9 +1,13 @@
 package com.zhimeng.androidutils.widget;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -13,6 +17,29 @@ public class SimplePagerView extends CustomPagerView {
 
     public interface PageItem {
         void draw(Canvas canvas, RectF rect);
+    }
+
+    public static class BitmapPageItem implements PageItem {
+
+        private static final Paint PAINT = new Paint();
+
+        static {
+            PAINT.setAntiAlias(true);
+            PAINT.setFilterBitmap(true);
+        }
+
+        private final Bitmap mBitmap;
+        private final Rect mSrc;
+
+        public BitmapPageItem(Context context, @DrawableRes int id) {
+            mBitmap = BitmapFactory.decodeResource(context.getResources(), id);
+            mSrc = new Rect(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
+        }
+
+        @Override
+        public void draw(Canvas canvas, RectF rect) {
+            canvas.drawBitmap(mBitmap, mSrc, rect, PAINT);
+        }
     }
 
     private static class ItemHolder {
