@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.zhimeng.androidutils.AndroidUtilsTestActivity">
 
-    <com.zhimeng.androidutils.widget.SimplePagerView
+    <com.zhimeng.androidutils.opengl.demo.GLDemoView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/pager_view"/>
+        android:layout_height="match_parent"
+        android:id="@+id/gl_view"/>
 
 </android.support.constraint.ConstraintLayout>
